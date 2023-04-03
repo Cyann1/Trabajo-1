@@ -15,7 +15,7 @@ public class ProgramaPrincipal {
 
 		ArrayList<Partido> listaPartidos = new ArrayList<Partido>();
 
-		String archivo = "Archivos\\resultados.txt";
+		String archivo = "archivos\\resultados.txt";
 		for (String linea : Files.readAllLines(Paths.get(archivo))) {
 			String lineas[] = linea.split(" ");
 
@@ -34,11 +34,11 @@ public class ProgramaPrincipal {
 
 		}
 
-		/*for (int i = 0; i < listaPartidos.size(); i++) {
+		for (int i = 0; i < listaPartidos.size(); i++) {
 			JOptionPane.showMessageDialog(null,
 					listaPartidos.get(i).getEquipo1().getNombre() + "   " + listaPartidos.get(i).getGolesEquipo1() + "  "
 							+ listaPartidos.get(i).getGolesEquipo2() + "  " + listaPartidos.get(i).getEquipo2().getNombre());
-		}*/
+		}
 		
 		Pronostico unPronostico;
 		Equipo equipo1;
@@ -46,7 +46,7 @@ public class ProgramaPrincipal {
 		
 		ArrayList<Pronostico> listaPronosticos = new ArrayList<Pronostico>();
 		
-		String archivos = "Archivos\\pronostico.txt";
+		String archivos = "archivos\\pronostico.txt";
 		for (String linea : Files.readAllLines(Paths.get(archivos))) {
 			String lineas[] = linea.split(" ");
 
@@ -65,10 +65,10 @@ public class ProgramaPrincipal {
 			listaPronosticos.add(unPronostico);
 		}
 		
-		/*for (int i = 0; i < listaPronosticos.size(); i++) {
+		for (int i = 0; i < listaPronosticos.size(); i++) {
 			JOptionPane.showMessageDialog(null, listaPronosticos.get(i).getEquipo1().getNombre() + "   " + listaPronosticos.get(i).getGanaEquipo1() + "  " + listaPronosticos.get(i).getEmpate() + "  "
 					+ listaPronosticos.get(i).getGanaEquipo2() + "  " + listaPronosticos.get(i).getEquipo2().getNombre());
-		}*/
+		}
 	}
 
 }

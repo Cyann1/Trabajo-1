@@ -1,4 +1,4 @@
-Argentina X - - Arabia
-Mexico X - - Polonia
-Alemania - X - Portugal
-Espania X - - Croacia
+Argentina 1 0 0 Arabia
+Mexico 1 0 0 Polonia
+Alemania 0 1 0 Portugal
+Espania 1 0 0 Croacia
