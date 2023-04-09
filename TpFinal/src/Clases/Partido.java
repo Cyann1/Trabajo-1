@@ -1,3 +1,4 @@
+package Clases;
 
 public class Partido {
 
@@ -5,6 +6,17 @@ public class Partido {
 	private Equipo equipo2;
 	private int golesEquipo1;
 	private int golesEquipo2;
+
+	public Resultado getResultadoPartido() { // devuelve el resultado del partido tomando en cuenta el equipo1
+		if (golesEquipo1 > golesEquipo2) {
+			return Resultado.GANADOR;
+		}
+		if (golesEquipo1 < golesEquipo2) {
+			return Resultado.PERDEDOR;
+		} else {
+			return Resultado.EMPATE;
+		}
+	}
 
 	@Override
 	public String toString() {
@@ -36,7 +48,7 @@ public class Partido {
 
 	public Partido() {
 	}
-	
+
 	public Equipo getEquipo1() {
 		return equipo1;
 	}
@@ -68,5 +80,4 @@ public class Partido {
 	public void setGolesEquipo2(int golesEquipo2) {
 		this.golesEquipo2 = golesEquipo2;
 	}
-
 }

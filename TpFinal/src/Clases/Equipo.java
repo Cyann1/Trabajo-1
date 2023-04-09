@@ -1,17 +1,16 @@
+package Clases;
 
 public class Equipo {
 
 	private String nombre;
-	private String descripcion;
 
 	@Override
 	public String toString() {
 		return nombre;
 	}
 
-	public Equipo(String nombre, String descripcion) {
+	public Equipo(String nombre) {
 		this.nombre = nombre;
-		this.descripcion = descripcion;
 	}
 	
 	public Equipo() {
@@ -23,14 +22,6 @@ public class Equipo {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
-	}
-
-	public String getDescripcion() {
-		return descripcion;
-	}
-
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
 	}
 
 }

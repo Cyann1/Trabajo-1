@@ -1,3 +1,4 @@
+package Clases;
 
 public class Pronostico {
 
@@ -6,7 +7,18 @@ public class Pronostico {
 	private int ganaEquipo1;
 	private int empate;
 	private int ganaEquipo2;
-	
+
+	public Resultado getResultadoPronostico() { // devuelve el resultado del pronostico tomando en cuenta el equipo1
+		if (ganaEquipo1 == 1) {
+			return Resultado.GANADOR;
+		}
+		if (ganaEquipo2 == 1) {
+			return Resultado.PERDEDOR;
+		} else {
+			return Resultado.EMPATE;
+		}
+	}
+
 	@Override
 	public String toString() {
 		return "...";
@@ -19,7 +31,7 @@ public class Pronostico {
 		this.empate = empate;
 		this.ganaEquipo2 = ganaEquipo2;
 	}
-	
+
 	public Pronostico() {
 	}
 
@@ -62,5 +74,4 @@ public class Pronostico {
 	public void setGanaEquipo2(int ganaEquipo2) {
 		this.ganaEquipo2 = ganaEquipo2;
 	}
-
 }

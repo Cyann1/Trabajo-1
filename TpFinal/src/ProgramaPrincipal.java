@@ -5,79 +5,80 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
+import Clases.Equipo;
+import Clases.Partido;
+import Clases.Pronostico;
+import Clases.Resultado;
+
 public class ProgramaPrincipal {
 
 	public static void main(String[] args) throws IOException {
 
-		Partido unPartido = new Partido();
-		Equipo unEquipo1;
-		Equipo unEquipo2;
-
+		Partido partido;
+		Equipo equipo1, equipo2;
 		ArrayList<Partido> listaPartidos = new ArrayList<Partido>();
 
-		String archivo = "archivos\\resultados.txt";
-		
+		String archivo = "archivos\\resultados.txt"; // ruta del archivo resultados
+
+		// este for sirve para leer el archivo de los resultados
+
 		for (String linea : Files.readAllLines(Paths.get(archivo))) {
-			String lineas[] = linea.split(" ");
 
-			unPartido = new Partido();
-			unEquipo1 = new Equipo();
-			unEquipo2 = new Equipo();
+			String lineas[] = linea.split(" "); // creo un array con los elementos del archivo de los resultados
 
-			unEquipo1.setNombre(lineas[0]);
-			unEquipo2.setNombre(lineas[3]);
+			equipo1 = new Equipo(); // instancio el equipo 1
+			equipo1.setNombre(lineas[0]);
 
-			unPartido.setEquipo1(unEquipo1);
-			unPartido.setEquipo2(unEquipo2);
-			
-			unPartido.setGolesEquipo1(Integer.parseInt(lineas[1]));
-			unPartido.setGolesEquipo2(Integer.parseInt(lineas[2]));
-			
-			listaPartidos.add(unPartido);
+			equipo2 = new Equipo(); // instancio el equipo 2
+			equipo2.setNombre(lineas[3]);
+
+			partido = new Partido(); // instancio el partido
+			partido.setEquipo1(equipo1);
+			partido.setEquipo2(equipo2);
+			partido.setGolesEquipo1(Integer.parseInt(lineas[1]));
+			partido.setGolesEquipo2(Integer.parseInt(lineas[2]));
+
+			listaPartidos.add(partido); // cargo el partido en la lista de partidos
 		}
 
-		for (int i = 0; i < listaPartidos.size(); i++) {
-			JOptionPane.showMessageDialog(null,
-					listaPartidos.get(i).getEquipo1().getNombre() + "   " + listaPartidos.get(i).getGolesEquipo1()
-							+ "  " + listaPartidos.get(i).getGolesEquipo2() + "  "
-							+ listaPartidos.get(i).getEquipo2().getNombre());
-		}
-
-		Pronostico unPronostico;
-		Equipo equipo1;
-		Equipo equipo2;
-
+		Pronostico pronostico;
 		ArrayList<Pronostico> listaPronosticos = new ArrayList<Pronostico>();
 
-		String archivos = "archivos\\pronostico.txt";
-		
+		String archivos = "archivos\\pronostico.txt"; // ruta del archivo pronostico
+
+		// este for sirve para leer el archivo de los pronosticos
+
 		for (String linea : Files.readAllLines(Paths.get(archivos))) {
-			String lineas[] = linea.split(" ");
 
-			unPronostico = new Pronostico();
-			equipo1 = new Equipo();
-			equipo2 = new Equipo();
+			String lineas[] = linea.split(" "); // creo un array con los elementos del archivo de los pronosticos
 
+			equipo1 = new Equipo(); // instancio el equipo 1
 			equipo1.setNombre(lineas[0]);
+
+			equipo2 = new Equipo(); // instancio el equipo 2
 			equipo2.setNombre(lineas[4]);
 
-			unPronostico.setEquipo1(equipo1);
-			unPronostico.setEquipo2(equipo2);
-			
-			unPronostico.setGanaEquipo1(Integer.parseInt(lineas[1]));
-			unPronostico.setEmpate(Integer.parseInt(lineas[2]));
-			unPronostico.setGanaEquipo2(Integer.parseInt(lineas[3]));
-			
-			listaPronosticos.add(unPronostico);
+			pronostico = new Pronostico(); // instancio el pronostico
+			pronostico.setEquipo1(equipo1);
+			pronostico.setEquipo2(equipo2);
+			pronostico.setGanaEquipo1(Integer.parseInt(lineas[1]));
+			pronostico.setEmpate(Integer.parseInt(lineas[2]));
+			pronostico.setGanaEquipo2(Integer.parseInt(lineas[3]));
+
+			listaPronosticos.add(pronostico); // cargo el pronostico en la lista de pronosticos
 		}
 
-		for (int i = 0; i < listaPronosticos.size(); i++) {
-			JOptionPane.showMessageDialog(null,
-					listaPronosticos.get(i).getEquipo1().getNombre() + "   " + listaPronosticos.get(i).getGanaEquipo1()
-							+ "  " + listaPronosticos.get(i).getEmpate() + "  "
-							+ listaPronosticos.get(i).getGanaEquipo2() + "  "
-							+ listaPronosticos.get(i).getEquipo2().getNombre());
+		// este for sirve para comparar los resultados y los pronosticos
+
+		Resultado resultado = Resultado.EMPATE;
+		ArrayList<Resultado> listaResultados = new ArrayList<Resultado>();
+
+		for (int i = 0; i < listaPartidos.size(); i++) {
+			resultado = resultado.getResultadoPronostico(listaPartidos.get(i), listaPronosticos.get(i));
+			listaResultados.add(resultado);
 		}
+
+		// mostramos el puntaje
+		System.out.print("Puntaje: " + resultado.getPuntaje(listaResultados));
 	}
-
 }
